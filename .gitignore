@@ -1,0 +1,27 @@
+## =========================
+## Visual Studio & .NET Build Artifacts
+## =========================
+.vs/
+[Bb]in/
+[Oo]bj/
+packages/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.opensdf
+*.opendb
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Ll]og/
+[Ll]ogs/
+*.nupkg
+$tf/
+TestResults/
+App_Data/*.mdf
+App_Data/*.ldf
