@@ -1,0 +1,228 @@
+/* svpms/assets/css/layout.css */
+
+#app-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    z-index: 1040;
+    display: flex;
+    flex-direction: column;
+    transition: width var(--transition-base), transform var(--transition-base);
+}
+
+.sidebar-header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-logo i {
+    font-size: 1.5rem;
+}
+
+.sidebar-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-md) var(--spacing-sm);
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.menu-header {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-muted);
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-xs);
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity var(--transition-fast);
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: 10px var(--spacing-md);
+    color: var(--text-secondary);
+    border-radius: var(--radius-button);
+    font-weight: 500;
+    font-size: 0.925rem;
+    transition: all var(--transition-fast);
+}
+
+.menu-item:hover {
+    color: var(--primary);
+    background-color: var(--sidebar-hover-bg);
+}
+
+.menu-item.active {
+    color: #FFFFFF;
+    background-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
+}
+
+.menu-item i {
+    font-size: 1.2rem;
+    min-width: 20px;
+    text-align: center;
+}
+
+.menu-item-text {
+    transition: opacity var(--transition-fast);
+}
+
+.sidebar-footer {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Header Styling */
+.app-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: var(--sidebar-width);
+    height: var(--header-height);
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg);
+    transition: left var(--transition-base);
+}
+
+/* Main Content Wrapper */
+.main-content {
+    margin-left: var(--sidebar-width);
+    margin-top: var(--header-height);
+    flex: 1 0 auto;
+    padding: var(--spacing-lg);
+    min-height: calc(100vh - var(--header-height) - 56px);
+    background-color: var(--bg-primary);
+    transition: margin-left var(--transition-base);
+}
+
+/* Portal Footer */
+.app-footer {
+    margin-left: var(--sidebar-width);
+    transition: margin-left var(--transition-base);
+}
+
+/* Collapsed States on Desktop */
+body.sidebar-collapsed .app-sidebar {
+    width: var(--sidebar-collapsed-width);
+}
+
+body.sidebar-collapsed .app-header {
+    left: var(--sidebar-collapsed-width);
+}
+
+body.sidebar-collapsed .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+body.sidebar-collapsed .app-footer {
+    margin-left: var(--sidebar-collapsed-width);
+}
+
+body.sidebar-collapsed .sidebar-logo span,
+body.sidebar-collapsed .menu-item-text,
+body.sidebar-collapsed .menu-header,
+body.sidebar-collapsed .sidebar-footer span {
+    display: none !important;
+}
+
+body.sidebar-collapsed .menu-item {
+    justify-content: center;
+    padding: 12px;
+}
+
+body.sidebar-collapsed .menu-header {
+    opacity: 0;
+}
+
+body.sidebar-collapsed .sidebar-logo {
+    justify-content: center;
+}
+
+/* Collapsed / Mobile Layout Breakpoints */
+@media (max-width: 991.98px) {
+    .app-sidebar {
+        transform: translateX(-100%);
+    }
+    
+    .app-header {
+        left: 0;
+        padding: 0 var(--spacing-md);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: var(--spacing-md);
+    }
+    
+    .app-footer {
+        margin-left: 0;
+    }
+    
+    body.mobile-sidebar-open .app-sidebar {
+        transform: translateX(0);
+        width: var(--sidebar-width);
+    }
+
+    body.mobile-sidebar-open .sidebar-logo span,
+    body.mobile-sidebar-open .menu-item-text,
+    body.mobile-sidebar-open .menu-header {
+        display: inline !important;
+    }
+    
+    /* Overlay background when sidebar is open on mobile */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(15, 23, 42, 0.4);
+        z-index: 1039;
+        display: none;
+    }
+    
+    body.mobile-sidebar-open .sidebar-overlay {
+        display: block;
+    }
+}
