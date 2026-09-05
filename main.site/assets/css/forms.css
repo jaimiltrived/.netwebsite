@@ -1,0 +1,352 @@
+/* svpms/assets/css/forms.css */
+
+/* Form group overrides */
+.form-group-premium {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-label-premium {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.required-indicator {
+    color: var(--danger);
+    margin-left: 2px;
+}
+
+/* ASP.NET Web Forms Validator Display & Theme Rules */
+.validator-error,
+.validator-msg {
+    color: #ef4444;
+    font-size: 0.8rem;
+    margin-top: 0.35rem;
+    font-weight: 500;
+    display: block;
+}
+
+span.validator-error[style*="display:none"],
+span.validator-error[style*="display: none"],
+span.validator-msg[style*="display:none"],
+span.validator-msg[style*="display: none"],
+span[id*="rfv"][style*="display:none"],
+span[id*="rfv"][style*="display: none"],
+span[id*="rev"][style*="display:none"],
+span[id*="rev"][style*="display: none"],
+span[id*="cv"][style*="display:none"],
+span[id*="cv"][style*="display: none"],
+span[id*="Validator"][style*="display:none"],
+span[id*="Validator"][style*="display: none"],
+.validator-error[style*="none"],
+.validator-msg[style*="none"],
+.validator-error[style*="visibility:hidden"],
+.validator-error[style*="visibility: hidden"],
+[id*="vsLogin"][style*="display:none"],
+[id*="vsLogin"][style*="display: none"],
+[id*="vsContact"][style*="display:none"],
+[id*="vsContact"][style*="display: none"],
+[id*="vsReset"][style*="display:none"],
+[id*="vsReset"][style*="display: none"],
+[id*="vsForgot"][style*="display:none"],
+[id*="vsForgot"][style*="display: none"],
+[id*="vsHelp"][style*="display:none"],
+[id*="vsHelp"][style*="display: none"],
+[style*="display:none"],
+[style*="display: none"] {
+    display: none !important;
+}
+
+[style*="visibility:hidden"],
+[style*="visibility: hidden"] {
+    visibility: hidden !important;
+}
+
+/* Floating labels adjustments for modern look */
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: var(--primary);
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.form-control-premium {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: var(--radius-input);
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+}
+
+.form-control-premium:focus {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+/* Multi-step Wizard Styles */
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+    list-style: none;
+    padding: 0;
+}
+
+.wizard-steps::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.wizard-step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-card);
+    border: 3px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: all var(--transition-base);
+    font-size: 0.95rem;
+}
+
+.step-label {
+    margin-top: var(--spacing-sm);
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color var(--transition-base);
+}
+
+/* Wizard States */
+.wizard-step.active .step-number {
+    border-color: var(--primary);
+    background-color: var(--primary);
+    color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.15);
+}
+
+.wizard-step.active .step-label {
+    color: var(--primary);
+}
+
+.wizard-step.completed .step-number {
+    border-color: var(--success);
+    background-color: var(--success);
+    color: #FFFFFF;
+}
+
+.wizard-step.completed .step-label {
+    color: var(--success);
+}
+
+/* Drag & Drop File Upload Area */
+.upload-dropzone {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius-card);
+    padding: var(--spacing-xl);
+    text-align: center;
+    background-color: var(--bg-primary);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    position: relative;
+}
+
+.upload-dropzone:hover {
+    border-color: var(--primary);
+    background-color: rgba(var(--primary-rgb), 0.02);
+}
+
+.upload-icon {
+    font-size: 2.5rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-sm);
+    transition: color var(--transition-fast);
+}
+
+.upload-dropzone:hover .upload-icon {
+    color: var(--primary);
+}
+
+.upload-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Image Upload Preview Panel */
+.upload-preview-container {
+    display: none;
+    margin-top: var(--spacing-md);
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background-color: var(--bg-card);
+}
+
+.upload-preview-image {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    background-color: #000;
+}
+
+.remove-upload-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(239, 68, 68, 0.9);
+    border: none;
+    color: #FFFFFF;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.remove-upload-btn:hover {
+    background-color: #EF4444;
+}
+
+/* Toggle Switch Styling Override */
+.form-check-input:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.15);
+    border-color: var(--primary);
+}
+
+/* Form Validation Aesthetics & States */
+.form-control-premium.is-invalid,
+.was-validated .form-control-premium:invalid,
+.form-select.form-control-premium.is-invalid,
+.was-validated .form-select.form-control-premium:invalid {
+    border-color: #ef4444 !important;
+    padding-right: calc(1.5em + 0.75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ef4444'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ef4444' stroke='none'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right calc(0.375em + 0.35rem) center !important;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Avoid overlapping background SVG icons on inputs with absolute action buttons (e.g. eye toggle) */
+.position-relative .form-control-premium[type="password"].is-invalid,
+.position-relative .form-control-premium.is-invalid.has-toggle {
+    background-image: none !important;
+    padding-right: 48px !important;
+}
+
+.form-control-premium.is-valid,
+.was-validated .form-control-premium:valid,
+.form-select.form-control-premium.is-valid {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12) !important;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ef4444;
+    line-height: 1.35;
+}
+
+.is-invalid ~ .invalid-feedback,
+.was-validated :invalid ~ .invalid-feedback {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.valid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #10b981;
+}
+
+.is-valid ~ .valid-feedback {
+    display: block;
+}
+
+/* Shake Animation on Validation Error */
+@keyframes inputShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+.field-shake {
+    animation: inputShake 0.35s ease-in-out;
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .form-control-premium.is-invalid,
+[data-theme="dark"] .was-validated .form-control-premium:invalid {
+    border-color: #f87171 !important;
+    box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.2) !important;
+}
+
+[data-theme="dark"] .invalid-feedback {
+    color: #f87171;
+}
+
+/* ASP.NET Web Forms Validation Controls */
+span[id*="rfv"], span[id*="rev"], span[id*="cv"], span[id*="val"], .asp-val-error {
+    color: #ef4444;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 4px;
+    display: block;
+}
+
+[data-theme="dark"] span[id*="rfv"], 
+[data-theme="dark"] span[id*="rev"], 
+[data-theme="dark"] span[id*="cv"], 
+[data-theme="dark"] span[id*="val"],
+[data-theme="dark"] .asp-val-error {
+    color: #f87171;
+}
+
