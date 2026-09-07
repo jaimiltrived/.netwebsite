@@ -1,0 +1,227 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Portal.Master.cs" Inherits="main.site.PortalMaster" %>
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - SVPMS</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- DataTables Bootstrap 5 CSS -->
+    <link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/variables.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/style.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/forms.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/layout.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/components.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/dashboard.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/tables.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/responsive.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/dark-mode.css") %>" />
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="app-layout">
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.aspx" class="sidebar-logo">
+                    <i class="bi bi-shield-check"></i>
+                    <span>SVPMS</span>
+                </a>
+                <button id="sidebar-toggle" class="btn btn-sm btn-link d-none d-lg-block text-color-secondary p-0 border-0" type="button">
+                    <i class="bi bi-text-indent-left fs-4"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-body">
+                <ul class="sidebar-menu" id="sidebar-menu-target">
+                    <!-- Loaded dynamically via sidebar.js -->
+                </ul>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar avatar-placeholder avatar-sm text-white" style="background-color: var(--primary);" id="sidebar-user-avatar-initials">U</div>
+                    <div class="overflow-hidden">
+                        <h6 class="mb-0 text-bold text-color-primary fs-7 text-truncate" id="sidebar-user-name">Loading...</h6>
+                        <small class="text-color-muted text-truncate d-block fs-8" id="sidebar-user-role">Loading...</small>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="w-100 min-vh-100 d-flex flex-column">
+            <!-- Header -->
+            <header class="app-header glass-header">
+                <!-- Left Area (Mobile menu trigger + Breadcrumb) -->
+                <div class="d-flex align-items-center gap-3">
+                    <button id="sidebar-toggle-mobile" class="btn btn-sm btn-link d-lg-none text-color-secondary p-0 border-0" type="button">
+                        <i class="bi bi-list fs-3"></i>
+                    </button>
+                    <div class="d-none d-sm-block">
+                        <h5 class="text-bold mb-0 text-color-primary" id="page-title-label"><%: Page.Title %></h5>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 fs-8">
+                                <li class="breadcrumb-item"><a href="#" class="text-color-secondary">Portal</a></li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page" id="breadcrumb-active-label"><%: Page.Title %></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Right Controls (Search + Notifications + Theme Toggle + User Profile) -->
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Search bar -->
+                    <div class="position-relative d-none d-md-block">
+                        <input type="text" class="form-control form-control-sm form-control-premium ps-5" placeholder="Quick search..." style="width: 200px;">
+                        <i class="bi bi-search position-absolute text-color-muted" style="top: 10px; left: 16px;"></i>
+                    </div>
+
+                    <!-- Notifications Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-link text-color-secondary p-0 border-0 position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell-fill fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-2 border-white" style="font-size: 0.6rem; padding: 3px 6px;">
+                                3
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2 rounded-card" style="width: 280px; font-size: 0.85rem;">
+                            <li class="dropdown-header text-bold d-flex justify-content-between align-items-center">
+                                <span>Notifications</span>
+                                <a href="#" class="fs-8 text-primary">Mark all as read</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item py-2 d-flex gap-2" href="#">
+                                    <div class="text-warning"><i class="bi bi-clock-fill"></i></div>
+                                    <div>
+                                        <p class="mb-0 text-bold">Visitor Approval Required</p>
+                                        <small class="text-muted">Ananya Iyer is waiting for verification</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item py-2 d-flex gap-2" href="#">
+                                    <div class="text-success"><i class="bi bi-door-open-fill"></i></div>
+                                    <div>
+                                        <p class="mb-0 text-bold">Visitor Entered Gate A</p>
+                                        <small class="text-muted">Rohan Verma checked in at 09:12 AM</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item py-2 d-flex gap-2" href="#">
+                                    <div class="text-danger"><i class="bi bi-slash-circle-fill"></i></div>
+                                    <div>
+                                        <p class="mb-0 text-bold">Blacklist Alert Triggered</p>
+                                        <small class="text-muted">Pass VP-264029 scanned at Gate A</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="text-center"><a href="#" class="dropdown-item py-1 text-primary fs-8">View all logs</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Theme Toggle Switch -->
+                    <button id="theme-toggle" class="btn btn-sm btn-link text-color-secondary p-0 border-0" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle Dark/Light Mode">
+                        <i class="bi bi-moon-fill fs-5"></i>
+                    </button>
+
+                    <!-- User Dropdown Menu -->
+                    <div class="dropdown">
+                        <button class="btn p-0 border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Avatar" class="avatar avatar-sm cursor-pointer" id="header-user-avatar">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 py-2 rounded-card" style="width: 200px; font-size: 0.9rem;">
+                            <li class="px-3 py-2 border-bottom">
+                                <h6 class="mb-0 text-bold text-color-primary" id="header-user-name">Loading...</h6>
+                                <small class="text-color-muted">User Session</small>
+                            </li>
+                            <li><a class="dropdown-item py-2" href="profile.aspx"><i class="bi bi-person me-2"></i> My Profile</a></li>
+                            <li><a class="dropdown-item py-2" href="settings.aspx"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                            <li><a class="dropdown-item py-2" href="#" id="change-pwd-link"><i class="bi bi-shield-lock me-2"></i> Change Password</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 text-danger text-bold" href="#" id="logout-btn"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Portal Main Content Placeholder -->
+            <form id="portalForm" runat="server" class="flex-grow-1 d-flex flex-column">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </form>
+
+            <!-- Shared Portal Footer -->
+            <footer class="app-footer mt-auto py-3 bg-card-theme border-top-0 rounded-0 text-center fs-8 text-color-muted">
+                <div class="container-fluid d-flex justify-content-between align-items-center px-4 flex-wrap gap-2">
+                    <div>
+                        <span>&copy; 2026 Smart Visitor Pass Management System (SVPMS)</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <a href="#" class="text-color-muted"><i class="bi bi-question-circle"></i> Helpdesk</a>
+                        <a href="#" class="text-color-muted"><i class="bi bi-shield-lock"></i> Policy</a>
+                        <span>v1.0.0 (ASP.NET Web Forms)</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Core Javascript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Custom Portal Scripts -->
+    <script src="<%= ResolveUrl("~/assets/js/theme.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/animations.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/auth.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/sidebar.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/notifications.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/forms.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/charts.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/tables.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/admin.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/receptionist.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/security.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/app.js") %>"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 600, once: true });
+            }
+            document.querySelectorAll('[data-aos]').forEach(function (el) {
+                el.classList.add('aos-animate');
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="ScriptsContent" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>
