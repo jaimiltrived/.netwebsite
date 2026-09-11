@@ -1,0 +1,116 @@
+/* svpms/assets/css/pricing.css */
+
+/* Billing Toggle Switch */
+.billing-toggle-container {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--border-color);
+    padding: 4px;
+    border-radius: var(--radius-pill);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.billing-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-base);
+}
+
+.billing-toggle-btn.active {
+    background-color: var(--bg-card);
+    color: var(--primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Pricing Card Layout */
+.pricing-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    padding: var(--spacing-xl);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card.popular {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+.pricing-popular-badge {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 6px 36px;
+    transform: rotate(45deg);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pricing-price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: var(--spacing-md) 0;
+}
+
+.pricing-features-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-lg) 0;
+    text-align: left;
+}
+
+.pricing-features-list li {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.pricing-features-list li i {
+    color: var(--success);
+    font-size: 1.1rem;
+}
+
+/* Pricing Comparison Table Styles */
+.pricing-comparison-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.pricing-comparison-table th, 
+.pricing-comparison-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.pricing-comparison-table th:first-child, 
+.pricing-comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.pricing-comparison-table tr:hover td {
+    background-color: var(--sidebar-hover-bg);
+}
