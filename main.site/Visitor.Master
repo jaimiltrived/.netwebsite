@@ -1,0 +1,125 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Visitor.Master.cs" Inherits="main.site.VisitorMaster" %>
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - Visitor Portal - SVPMS</title>
+    
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet" />
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/variables.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/style.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/forms.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/visitor.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/responsive.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/assets/css/dark-mode.css") %>" />
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <!-- Public Visitor Navigation Bar -->
+    <nav class="navbar navbar-expand-lg glass-header sticky-top py-3">
+        <div class="container px-4">
+            <a class="navbar-brand text-bold text-primary d-flex align-items-center gap-2" href="<%= ResolveUrl("~/visitor/index.aspx") %>">
+                <i class="bi bi-shield-check fs-3"></i>
+                <span class="fs-4 text-bold text-color-primary">SVPMS</span>
+            </a>
+            
+            <div class="collapse navbar-collapse d-none d-lg-block" id="publicNavbar">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+                    <li class="nav-item"><a class="nav-link text-semibold" href="<%= ResolveUrl("~/visitor/index.aspx") %>">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-semibold" href="<%= ResolveUrl("~/visitor/register.aspx") %>">Register Visit</a></li>
+                    <li class="nav-item"><a class="nav-link text-semibold" href="<%= ResolveUrl("~/visitor/status.aspx") %>">Track Visit</a></li>
+                    <li class="nav-item"><a class="nav-link text-semibold" href="<%= ResolveUrl("~/visitor/help.aspx") %>">Help & Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="d-flex align-items-center gap-3 ms-auto">
+                <button id="theme-toggle" class="btn btn-sm btn-link text-color-secondary p-0 border-0" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Toggle Theme">
+                    <i class="bi bi-moon-fill fs-5"></i>
+                </button>
+                <a href="<%= ResolveUrl("~/login.aspx") %>" class="btn btn-outline-primary fs-7 py-2"><i class="bi bi-shield-lock"></i> Staff Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Visitor Content Placeholder -->
+    <form id="visitorForm" runat="server">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+
+    <!-- Visitor Footer -->
+    <footer class="mt-auto py-4 bg-card-theme border-top fs-8 text-color-muted">
+        <div class="container-fluid d-flex justify-content-between align-items-center px-4 flex-wrap gap-2">
+            <div><span>&copy; 2026 Smart Visitor Pass Management System (SVPMS)</span></div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="<%= ResolveUrl("~/visitor/help.aspx") %>" class="text-color-secondary text-decoration-none">Help Center</a>
+                <span>Visitor Portal Gateway</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation Bar -->
+    <div class="mobile-bottom-nav">
+        <a href="<%= ResolveUrl("~/visitor/index.aspx") %>" class="mobile-bottom-item">
+            <i class="bi bi-house-door-fill"></i>
+            <span>Home</span>
+        </a>
+        <a href="<%= ResolveUrl("~/visitor/register.aspx") %>" class="mobile-bottom-item">
+            <i class="bi bi-person-plus-fill"></i>
+            <span>Register</span>
+        </a>
+        <a href="<%= ResolveUrl("~/visitor/status.aspx") %>" class="mobile-bottom-item">
+            <i class="bi bi-search"></i>
+            <span>Track</span>
+        </a>
+        <a href="<%= ResolveUrl("~/visitor/help.aspx") %>" class="mobile-bottom-item">
+            <i class="bi bi-question-circle"></i>
+            <span>Help</span>
+        </a>
+    </div>
+
+    <!-- Core Javascript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="<%= ResolveUrl("~/assets/js/theme.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/animations.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/notifications.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/forms.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/app.js") %>"></script>
+    <script src="<%= ResolveUrl("~/assets/js/visitor.js") %>"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 600, once: true });
+            }
+            document.querySelectorAll('[data-aos]').forEach(function (el) {
+                el.classList.add('aos-animate');
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="ScriptsContent" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>

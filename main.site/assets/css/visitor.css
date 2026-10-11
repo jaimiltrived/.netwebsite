@@ -1,0 +1,207 @@
+/* svpms/assets/css/visitor.css */
+
+/* Multi-Step Wizard Styling */
+.wizard-steps-container {
+    margin-bottom: var(--spacing-xl);
+}
+
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.wizard-steps::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 5%;
+    right: 5%;
+    height: 3px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.wizard-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+}
+
+.wizard-step-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin: 0 auto 10px;
+    transition: all var(--transition-base);
+}
+
+.wizard-step.active .wizard-step-badge {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.3);
+}
+
+.wizard-step.completed .wizard-step-badge {
+    background-color: var(--success);
+    border-color: var(--success);
+    color: #ffffff;
+}
+
+.wizard-step-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.wizard-step.active .wizard-step-title {
+    color: var(--primary);
+}
+
+.wizard-step.completed .wizard-step-title {
+    color: var(--success);
+}
+
+/* File Dropzones */
+.drag-drop-zone {
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    background-color: var(--bg-primary);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.drag-drop-zone:hover, .drag-drop-zone.dragover {
+    border-color: var(--primary);
+    background-color: rgba(var(--primary-rgb), 0.05);
+}
+
+.preview-thumbnail {
+    max-height: 120px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-top: var(--spacing-md);
+}
+
+/* QR Pass Template Frame */
+.qr-pass-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-lg);
+    max-width: 420px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.qr-pass-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: #ffffff;
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+}
+
+.qr-pass-photo-frame {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
+    overflow: hidden;
+    margin: -45px auto var(--spacing-md);
+    background-color: var(--bg-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.qr-pass-details {
+    padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+.qr-pass-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    padding-top: var(--spacing-md);
+}
+
+.qr-pass-code-container {
+    background-color: var(--bg-primary);
+    border: 1px dashed var(--border-color);
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    text-align: center;
+    margin: var(--spacing-md) 0;
+}
+
+.qr-pass-status-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--success);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+}
+
+/* Mobile Bottom Navigation Bar */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobile-bottom-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.mobile-bottom-item.active {
+    color: var(--primary);
+}
+
+.mobile-bottom-item i {
+    font-size: 1.4rem;
+    margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: flex;
+    }
+    
+    body {
+        padding-bottom: 74px !important; /* spacing for bottom navigation bar */
+    }
+}
